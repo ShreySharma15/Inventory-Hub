@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* Simple custom styles for beginner-friendly code */
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
   min-height: 100vh;
 }
 
-/* Simple button animations */
+
 .btn-hover {
   transition: all 0.2s ease;
 }
@@ -16,7 +16,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* Simple modal backdrop */
+
 .modal-backdrop {
   backdrop-filter: blur(4px);
 }
