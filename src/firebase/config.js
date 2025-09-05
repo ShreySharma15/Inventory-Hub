@@ -12,5 +12,5 @@ appId: "1:484767293878:cb55011760fab7d9be117",
 
 const app = initializeApp(firebaseConfig);
 
-// IMPORTANT: export db so other files can import it
+
 export const db = getFirestore(app);
