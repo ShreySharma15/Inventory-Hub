@@ -16,7 +16,7 @@ function App() {
   const [editingProduct, setEditingProduct] = useState(null)
   const [searchTerm, setSearchTerm] = useState('')
 
-  // Realtime initial load + live updates
+  // Realtime load products
   useEffect(() => {
     setLoading(true);
     const unsub = subscribeProducts((list) => {
@@ -26,33 +26,33 @@ function App() {
     return () => unsub();
   }, []);
 
-  // Add new product (subscription will auto-update the list)
+  // Add new prodcts
   const handleAddProduct = async (productData) => {
     try {
       await createProduct(productData);
-      // No need to manually update state - subscription handles it
+      
     } catch (error) {
       console.error("Error adding product:", error);
       setError("Failed to add product");
     }
   }
 
-  // Update existing product (subscription will auto-update the list)
+  // Update existing product 
   const handleUpdateProduct = async (productData) => {
     try {
       await updateProductById(editingProduct.id, productData);
-      // No need to manually update state - subscription handles it
+     
     } catch (error) {
       console.error("Error updating product:", error);
       setError("Failed to update product");
     }
   }
 
-  // Delete product (subscription will auto-update the list)
+  // Delete product
   const handleDeleteProduct = async (productId) => {
     try {
       await deleteProductById(productId);
-      // No need to manually update state - subscription handles it
+      
     } catch (error) {
       console.error("Error deleting product:", error);
       setError("Failed to delete product");
@@ -77,7 +77,7 @@ function App() {
     setEditingProduct(null)
   }
 
-  // Handle form save
+  //form save
   const handleFormSave = (productData) => {
     if (editingProduct) {
       handleUpdateProduct(productData)
@@ -86,7 +86,7 @@ function App() {
     }
   }
 
-  // Calculate simple stats
+  // Calculate stats
   const totalProducts = products.length
   const lowStockProducts = products.filter(p => p.quantity < 10).length
   const totalValue = products.reduce((sum, p) => sum + (p.price * p.quantity), 0)
@@ -110,7 +110,7 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="max-w-6xl mx-auto p-6">
-        {/* Simple Header */}
+        {}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-purple-400 mb-2 leading-normal py-2">
             Inventory Hub
@@ -118,7 +118,7 @@ function App() {
           <p className="text-gray-400">Inventory management system</p>
         </div>
 
-        {/* Simple Stats Cards */}
+        {}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
             <div className="text-2xl font-bold text-white">{totalProducts}</div>
@@ -136,7 +136,7 @@ function App() {
           </div>
         </div>
 
-        {/* Simple Actions Bar */}
+        {}
         <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1">
             <input
@@ -155,7 +155,7 @@ function App() {
           </button>
         </div>
 
-        {/* Product Table */}
+        {}
         <ProductTable
           products={products}
           onEdit={openEditForm}
@@ -163,7 +163,7 @@ function App() {
           searchTerm={searchTerm}
         />
 
-        {/* Product Form Modal */}
+        {}
         <ProductForm
           isOpen={isFormOpen}
           onClose={closeForm}
