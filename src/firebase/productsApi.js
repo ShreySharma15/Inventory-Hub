@@ -13,7 +13,7 @@ onSnapshot,
 } from "firebase/firestore";
 import { db } from "./config";
 
-// Single collection reference
+
 const productsCol = collection(db, "products");
 
 // Create
