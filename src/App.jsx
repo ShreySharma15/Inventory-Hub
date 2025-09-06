@@ -121,9 +121,9 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="max-w-6xl mx-auto p-6">
-        {/* Header Section */}
+        {}
 <div className="mb-8">
-  {/* User Info & Sign Out Row: aligned right */}
+  {}
   <div className="flex justify-end items-center gap-4 mb-2">
     <div className="text-right">
       <p className="text-sm text-gray-400">Welcome,</p>
@@ -146,7 +146,7 @@ function App() {
     </button>
   </div>
 
-  {/* Centered Main Heading & Subtitle */}
+  {}
   <div className="w-full flex flex-col items-center mt-4">
   <div className="flex items-center gap-4 mb-2">
     <img 
