@@ -1,10 +1,10 @@
-/* Additional custom styles */
+
 .app-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0f 0%, #151520 50%, #1e1e2e 100%);
 }
 
-/* Custom animations */
+
 @keyframes pulse-glow {
   0%, 100% {
     box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
@@ -18,7 +18,7 @@
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
-/* Status badges */
+
 .badge-active {
   background: linear-gradient(135deg, #10b981, #059669);
 }
@@ -31,7 +31,7 @@
   background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
-/* Table hover effects */
+
 .table-row:hover {
   background: rgba(139, 92, 246, 0.1);
   transform: scale(1.01);

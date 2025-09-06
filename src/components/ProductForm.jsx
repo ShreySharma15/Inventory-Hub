@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 function ProductForm({ isOpen, onClose, onSave, editingProduct }) {
-  // 1) Add a local categories list to remove the undefined reference
+
   const categories = ["Electronics", "Grocery", "Clothing", "Accessories"];
 
   const [formData, setFormData] = useState({
@@ -13,7 +13,7 @@ function ProductForm({ isOpen, onClose, onSave, editingProduct }) {
 
   const [errors, setErrors] = useState({});
 
-  // Reset form when modal opens/closes
+  
   useEffect(() => {
     if (isOpen) {
       if (editingProduct) {
@@ -68,11 +68,11 @@ function ProductForm({ isOpen, onClose, onSave, editingProduct }) {
     onClose();
   };
 
-  // Keep this early return
+ 
   if (!isOpen) return null;
 
   return (
-    // 2) Make overlay clickable to close, and stop propagation on dialog
+
     <div
       className="fixed inset-0 bg-black/50 modal-backdrop flex items-center justify-center z-50 p-4"
       onClick={onClose}
