@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductTable from "./components/ProductTable";
 import ProductForm from "./components/ProductForm";
+import { useAuth } from "./context/AuthContext";
 import {
   createProduct,
   updateProductById,
@@ -9,6 +10,7 @@ import {
 } from "./firebase/productsApi";
 
 function App() {
+  const { currentUser, logout } = useAuth();
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -86,6 +88,15 @@ function App() {
     }
   }
 
+  // Handle logout
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  }
+
   // Calculate simple stats
   const totalProducts = products.length
   const lowStockProducts = products.filter(p => p.quantity < 10).length
@@ -110,13 +121,49 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="max-w-6xl mx-auto p-6">
-        {/* Simple Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-purple-400 mb-2 leading-normal py-2">
-            Inventory Hub
-          </h1>
-          <p className="text-gray-400">Inventory management system</p>
-        </div>
+        {/* Header Section */}
+<div className="mb-8">
+  {/* User Info & Sign Out Row: aligned right */}
+  <div className="flex justify-end items-center gap-4 mb-2">
+    <div className="text-right">
+      <p className="text-sm text-gray-400">Welcome,</p>
+      <p className="text-white font-medium">
+        {currentUser?.displayName || currentUser?.email}
+      </p>
+    </div>
+    {currentUser?.photoURL && (
+      <img 
+        src={currentUser.photoURL} 
+        alt="Profile" 
+        className="w-8 h-8 rounded-full"
+      />
+    )}
+    <button
+      onClick={handleLogout}
+      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm btn-hover"
+    >
+      Sign Out
+    </button>
+  </div>
+
+  {/* Centered Main Heading & Subtitle */}
+  <div className="w-full flex flex-col items-center mt-4">
+  <div className="flex items-center gap-4 mb-2">
+    <img 
+      src="/InventoryHub-logo.png" 
+      alt="Inventory Logo"
+      className="h-18 w-18 "
+    />
+    <h1 className="text-4xl font-bold text-purple-400 leading-normal py-2 text-center">
+      Inventory Hub
+    </h1>
+  </div>
+  <p className="text-gray-400 text-center">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     Inventory management system
+  </p>
+</div>
+</div>
 
         {/* Simple Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -175,4 +222,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
